@@ -1,9 +1,4 @@
-class Node:
-    def __init__(self, state, action=None, parent=None, path_cost=0):
-        self.state = state
-        self.parent = parent
-        self.action = action
-        self.path_cost = path_cost
+from State import State
 
 class Problem:
     def __init__(self, initial, goal):
@@ -27,7 +22,7 @@ class Problem:
             possible_actions.remove('D')
         return possible_actions
     
-    def action_cost(self, state, action, s_prime):
+    def action_cost(self, _state, _action, _s_prime):
         return 1
     
     def is_goal(self, state):
@@ -68,8 +63,3 @@ class Problem:
             s_prime.board[b_z+1][b_y][b_x] = 0
             s_prime.coordinates[0], s_prime.coordinates[swap_partner] = s_prime.coordinates[swap_partner], s_prime.coordinates[0]
         return s_prime
-
-class State:
-    def __init__(self, board, coordinates):
-        self.board = board
-        self.coordinates = coordinates

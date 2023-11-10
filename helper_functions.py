@@ -1,7 +1,7 @@
-from helper_classes import State
+from State import State
 
 def get_initial_state(problem):
-    problem_file = open('test1.txt', 'r')
+    problem_file = open(problem, 'r')
     initial_board = []
     goal_board = []
     grid_level = []

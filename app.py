@@ -1,6 +1,8 @@
+from copy import deepcopy
 import queue
 from helper_functions import get_initial_state, total_manhattan_dist
-from helper_classes import Node, Problem
+from Node import Node
+from Problem import Problem
 
 initial_state, goal_state = get_initial_state('test1.txt')
 
@@ -10,7 +12,7 @@ def expand(problem, node):
     s = node.state
     children = []
     for action in problem.actions(s):
-        s_prime = problem.result(s, action)
+        s_prime = problem.result(deepcopy(s), action)
         cost = node.path_cost + problem.action_cost(s, action, s_prime)
         child = Node(s_prime, action, node, cost)
         children.append(child)
@@ -32,5 +34,11 @@ def a_star_search(problem):
                 frontier.put((total_manhattan_dist(child.state, problem.goal), child))  
     return None
 
+g1 = a_star_search(problem)
 
-print(a_star_search(problem))
+depth = 0
+while g1.parent != None:
+    depth += 1
+    g1 = g1.parent
+
+print(depth)

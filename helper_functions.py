@@ -2,11 +2,13 @@ from State import State
 
 def get_initial_state(problem):
     problem_file = open(problem, 'r')
+    result_file = open('result.txt', 'x')
     initial_board = []
     goal_board = []
     grid_level = []
 
     for line in problem_file:
+        result_file.write(line)
         string_line = line.rstrip('\n').split(' ')
         if string_line == ['']:
             continue
@@ -49,6 +51,10 @@ def get_initial_state(problem):
     
     initial_state = State(initial_board, initial_mp)
     goal_state = State(goal_board, goal_mp)
+
+    problem_file.close()
+    result_file.close()
+
     return initial_state, goal_state
 
 def total_manhattan_dist(curr_state, goal_state):

@@ -1,3 +1,4 @@
+# Samuel Vieira Restrepo -- sv2657@nyu.edu
 from copy import deepcopy
 import queue
 from helper_functions import get_initial_state, total_manhattan_dist

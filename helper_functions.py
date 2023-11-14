@@ -1,6 +1,13 @@
+import os
 from State import State
 
+# This file contains the two functions that help run the A* Search algorithm
+# - get_initial_state generates two States with initial and goal boards and coordinates
+# - total_manhattan_dist is used as the heuristic for the frontier
 def get_initial_state(problem):
+    if os.path.exists('result.txt'):
+        os.remove('result.txt')
+        
     problem_file = open(problem, 'r')
     result_file = open('result.txt', 'x')
     initial_board = []

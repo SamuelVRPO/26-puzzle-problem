@@ -1,5 +1,10 @@
 from State import State
-
+# The Problem class contains all the methods necessary for the problem
+# - Initial, Goal are the initial and goal states of the problem, see State class
+# - Actions return the possible actions that can be performed given the current state
+# - Action Cost just returns 1, this was in order to make the A* search look cleaner
+# - Result takes the coordinates of the blank tile, finds the swap partner in the board,
+#      swaps the partner and the blank tile in the board as well as coordinates.
 class Problem:
     def __init__(self, initial, goal):
         self.initial = initial
@@ -30,12 +35,16 @@ class Problem:
     
     def result(self, state, action):
         s_prime = State(state.board, state.coordinates)
+        # Obtain coordinates of blank tile
         blank_tile_coordinates = s_prime.coordinates[0]
         b_x, b_y, b_z = blank_tile_coordinates[0], blank_tile_coordinates[1], blank_tile_coordinates[2]
         if action == 'E':
+            #find swap partner
             swap_partner = s_prime.board[b_z][b_y][b_x+1]
+            #swap blank tile with partner in board
             s_prime.board[b_z][b_y][b_x] = swap_partner
             s_prime.board[b_z][b_y][b_x+1] = 0
+            #swap coordinates
             s_prime.coordinates[0], s_prime.coordinates[swap_partner] = s_prime.coordinates[swap_partner], s_prime.coordinates[0]
         elif action == 'W':
             swap_partner = s_prime.board[b_z][b_y][b_x-1]
